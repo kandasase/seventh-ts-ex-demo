@@ -2,6 +2,7 @@ import { AppDataSource } from './data-source.js';
 import { MovieReloadData } from './config/reload.movie.js';
 import express, { urlencoded, json } from 'express';
 import morgan from 'morgan';
+import cors from 'cors'
 
 // feature
 import movieRouter from './movie/router/movie.router.js';
@@ -11,6 +12,7 @@ const HOST = process.env.HOST || 'localhost';
 const app = express();
 const movieReloadData = new MovieReloadData();
 
+app.use(cors())
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan(':date[iso] | :method | :url | :status | :res[content-length] - :response-time ms'));
